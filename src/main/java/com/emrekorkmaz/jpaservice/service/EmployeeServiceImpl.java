@@ -1,10 +1,11 @@
 package com.emrekorkmaz.jpaservice.service;
 
 import com.emrekorkmaz.jpaservice.dto.EmployeeDto;
-import com.emrekorkmaz.jpaservice.entity.Employee;
+import com.emrekorkmaz.jpaservice.entities.Employee;
 import com.emrekorkmaz.jpaservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public EmployeeDto update(EmployeeDto employeeDto) {
 
+        //Course Material
         /*Employee employee=employeeRepository.findById(employeeDto.getId()).orElseThrow(()-> new IllegalArgumentException("No such employee"));
         employee.setFirstName(employeeDto.getFirstName());
         employee.setLastName(employeeDto.getLastName());
@@ -65,14 +67,14 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public EmployeeDto getById(long Id) {
-        Optional<Employee> employee = employeeRepository.findById(Id);
+    public EmployeeDto getById(String Id) {
+        Employee employee = employeeRepository.findById(Id).orElseThrow(()->new IllegalArgumentException("Employee not found"));
         EmployeeDto dto = modelMapper.map(employee,EmployeeDto.class);
         return dto;
     }
 
     @Override
-    public EmployeeDto deleteById(long Id) {
+    public EmployeeDto delete(String Id) {
         Employee employee = employeeRepository.findById(Id).orElseThrow(() -> new IllegalArgumentException("Employee not found"));
         EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
         //employeeRepository.delete(employee);
@@ -86,6 +88,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public long count() {
         return employeeRepository.count();
+    }
+
+    @Override
+    public Page<EmployeeDto> findPagination(int pageSize, int pageNo, String sortField, String sortDirection) {
+        return null;
     }
 
 }

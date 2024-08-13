@@ -2,7 +2,7 @@ package com.emrekorkmaz.jpaservice.controller;
 
 
 import com.emrekorkmaz.jpaservice.dto.EmployeeDto;
-import com.emrekorkmaz.jpaservice.entity.Employee;
+import com.emrekorkmaz.jpaservice.entities.Employee;
 import com.emrekorkmaz.jpaservice.repository.EmployeeRepository;
 import com.emrekorkmaz.jpaservice.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class EmployeeController {
 
     //localhost:8080/employee
 
-    @GetMapping("/{Id}")
-    public ResponseEntity<EmployeeDto> getbyId(@PathVariable("Id") long Id)
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployeeDto> getbyId(@PathVariable("id") String Id)
     {
         return new ResponseEntity<EmployeeDto>(employeeService.getById(Id), HttpStatus.OK);
     }
@@ -38,20 +38,19 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<EmployeeDto> save(@RequestBody EmployeeDto employee)
     {
-        return new ResponseEntity<EmployeeDto>(employeeService.save(employee), HttpStatus.OK);
-
+        return new ResponseEntity<EmployeeDto>(employeeService.save(employee), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/{Id}")
-    public ResponseEntity<EmployeeDto> update(@PathVariable("Id") long Id, @RequestBody EmployeeDto employeeDto)
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeDto> update(@PathVariable("id") String Id, @RequestBody EmployeeDto employeeDto)
     {
         employeeDto.setId(Id);
         return new ResponseEntity<EmployeeDto>(employeeService.update(employeeDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{Id}")
-    public ResponseEntity<EmployeeDto> deleteById(@PathVariable("Id") long Id)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EmployeeDto> delete(@PathVariable("id") String Id)
     {
-        return new ResponseEntity<EmployeeDto>(employeeService.deleteById(Id), HttpStatus.OK);
+        return new ResponseEntity<EmployeeDto>(employeeService.delete(Id), HttpStatus.OK);
     }
 }

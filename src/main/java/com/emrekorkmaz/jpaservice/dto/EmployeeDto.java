@@ -4,21 +4,28 @@ import lombok.Data;
 
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 public class EmployeeDto {
 
-    private long Id;
+    private String id;
 
-    private String FirstName;
+    private String name;
 
-    private String LastName;
+    private String surname;
 
-    private String Email;
+    private String email;
 
-    private int Age;
+    private String job;
 
-    private Timestamp CreatedDate;
+    private int age;
 
-    private Timestamp LastUpdateDate;
+    private String position;
+
+    private Date addedDate;
+
+    private Timestamp createdDate;
+
+    private Timestamp lastUpdateDate;
 }

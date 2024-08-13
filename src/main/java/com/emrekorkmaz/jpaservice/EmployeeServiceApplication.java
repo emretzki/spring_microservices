@@ -2,12 +2,14 @@ package com.emrekorkmaz.jpaservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-public class JpaServiceApplication {
+@EnableDiscoveryClient
+public class EmployeeServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JpaServiceApplication.class, args);
+        SpringApplication.run(EmployeeServiceApplication.class, args);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.emrekorkmaz.jpaservice.controller;
 
 
-import com.emrekorkmaz.jpaservice.entity.Employee;
+import com.emrekorkmaz.jpaservice.entities.Employee;
 import com.emrekorkmaz.jpaservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +19,14 @@ public class QueriesController {
     private final EmployeeRepository employeeRepository;
 
 
-    @GetMapping("/findByFirstName")
+    @GetMapping("/findByName")
     public ResponseEntity<List<Employee>> getByFirstName() {
 
-        return ResponseEntity.ok(employeeRepository.findByFirstName("Edin"));
+        return ResponseEntity.ok(employeeRepository.findByName("Edin"));
     }
 
-    @GetMapping("/findByFirstNameAndLastName")
-    public ResponseEntity<List<Employee>> getByFirstNameAndLastName(String firstName, String lastName) {
-        return ResponseEntity.ok(employeeRepository.findByFirstNameAndLastName("Edin", "Dzeko"));
+    @GetMapping("/findByFullname")
+    public ResponseEntity<List<Employee>> getByNameAndSurname(String name, String surname) {
+        return ResponseEntity.ok(employeeRepository.findByNameAndSurname("Edin", "Dzeko"));
     }
 }
